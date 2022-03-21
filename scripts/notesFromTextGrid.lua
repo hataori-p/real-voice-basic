@@ -150,6 +150,12 @@ local veam = {} -- vibrato envelope for extra events
 local notes, lastNote = {}, nil
 for _, int in ipairs(grid.data) do
   local frb, frt = svp:getBlickFromSeconds(int.fr), svp:getBlickFromSeconds(int.to)
+                     -- normalize spaces
+  if int.tx then
+    int.tx = int.tx:match("^%s*(.-)%s*$") or ""
+  else
+    int.tx = ""
+  end
 
   if int.tx and int.tx:find("!", 1, true) then
     table.insert(veam, frb)
@@ -159,7 +165,6 @@ for _, int in ipairs(grid.data) do
       lastNote.en = frt
     end
   elseif int.tx and int.tx ~= "" then
-    int.tx = int.tx:match("^%s*(.-)%s*$")
     local txt, pit = int.tx:match("^(.-)%s*%(([%d-]+)%)$")
 
     if pit then -- pitch encoded in textGrid
@@ -198,6 +203,8 @@ for _, int in ipairs(grid.data) do
         table.insert(veam, 1)
       end
     end -- ind if pitch
+  else
+    lastNote = nil
   end -- if int.tx
 end -- for
                          -- vibrato envelope automation
