@@ -82,11 +82,13 @@ repeat
   local left, right = ifp[i - 1] or ifp[j + 1], ifp[j + 1] or ifp[i - 1]
   assert(left and right)
 
-  for k = i, j do
-    local pf, pt = math.log(left), math.log(right)
-    ifp[k] = math.exp(pf + (pt - pf) / (j - i + 2) * (k - i + 1))
-    if j + 1 - i <= 10 then -- filling gaps - short unvoiced -> voiced
-      fp[k] = ifp[k]
+  if left > 0 and right > 0 then
+    for k = i, j do
+      local pf, pt = math.log(left), math.log(right)
+      ifp[k] = math.exp(pf + (pt - pf) / (j - i + 2) * (k - i + 1))
+      if j + 1 - i <= 10 then -- filling gaps - short unvoiced -> voiced
+        fp[k] = ifp[k]
+      end
     end
   end
 
