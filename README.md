@@ -25,7 +25,7 @@ Everything is tested only on Windows, but it should work on other platforms wher
   - download last release of [Lua Binaries](http://luabinaries.sourceforge.net/) from its page, version >= 5.4 (eg. direct link to [lua-5.4.2_Win64_bin.zip](https://sourceforge.net/projects/luabinaries/files/5.4.2/Tools%20Executables/lua-5.4.2_Win64_bin.zip/download)),
   - from zip file extract and copy two binary files - _lua54.exe_ and _lua54.dll_ to your RealVoice directory (where rv.bat file is),
 - edit the _rv.bat_ file and change the paths C:/RealVoice/ to your actual path
-- append the RealVoice directory path into your system environment PATH variable in order to be able to run the rv batch script from your project directory
+- append the RealVoice directory path into your system environment PATH variable in order to be able to run the rv batch script from your project directory (how: https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/)
 
 ## Running scripts ##
 from command prompt using _rv.bat_:
